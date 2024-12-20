@@ -109,9 +109,7 @@ Sugar-commodities-dashboard/
 ---
 
 ## **Contributors**
-- **[Your Name](https://github.com/FA-96)**: Project Lead & Developer
+- **[Fahd Ndanghwa](https://github.com/FA-96)**: Project Lead & Developer
 
 ---
 
-## **License**
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
