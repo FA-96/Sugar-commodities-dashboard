@@ -119,7 +119,7 @@ daily_data['forecasted_price'] = pipeline.predict(x)
 daily_data['adjusted_price'] = (1.03 * daily_data['forecasted_price']) + (0.2 * daily_data['forecasted_price'])
 
 
-st.title("Sugar Price Forecast Dashboard")
+st.title("Sugar Commodity Dashboard")
 col1, col2 = st.columns(2)
 today_forecast = daily_data['forecasted_price'].iloc[-1]  # Last row as today's forecast
 today_adjusted = daily_data['adjusted_price'].iloc[-1]  # Last row as today's adjusted price
