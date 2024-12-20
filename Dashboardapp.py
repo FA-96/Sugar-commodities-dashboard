@@ -95,6 +95,9 @@ daily_sugar_price = sugar_price.resample('D').interpolate(method='linear')
 
 daily_features = pd.merge(india_weather, daily_sugar_production, left_index=True, right_index=True, how='inner')
 daily_data = pd.merge(daily_features, daily_sugar_price, left_index=True, right_index=True, how='inner')
+daily_data.index = pd.to_datetime(daily_data.index, errors='coerce')
+
+
 
 x = daily_data.drop(columns=['US_Cents_per_Pound_sugar'])
 y = daily_data['US_Cents_per_Pound_sugar']
@@ -132,14 +135,15 @@ with col2:
 st.subheader("Explore Prices Over Time")
 selected_date = st.slider(
     "Select a date:",
-    min_value=daily_data.index.min(),
-    max_value=daily_data.index.max(),
-    value=daily_data.index[-1],  # Default to most recent date
+    min_value=daily_data.index.min().to_pydatetime(),
+    max_value=daily_data.index.max().to_pydatetime(),
+    value=daily_data.index[-1].to_pydatetime(),  # Default to most recent date
     format="YYYY-MM-DD"
 )
 
-selected_forecast = daily_data.loc[selected_date, 'forecasted_price']
-selected_adjusted = daily_data.loc[selected_date, 'adjusted_price']
+selected_data = daily_data.loc[selected_date]
+selected_forecast = selected_data['forecasted_price']
+selected_adjusted = selected_data['adjusted_price']
 
 col3, col4 = st.columns(2)
 with col3:
