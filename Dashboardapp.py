@@ -128,8 +128,31 @@ with col1:
 with col2:
     st.metric("Today's Adjusted Price (US Cents/Lb)", round(today_adjusted, 2))
 
-st.subheader("Forecasted vs Adjusted Prices")
-st.line_chart(daily_data[['forecasted_price', 'adjusted_price']])
+# **Toggle Section for Time Selection**
+st.subheader("Explore Prices Over Time")
+selected_date = st.slider(
+    "Select a date:",
+    min_value=daily_data.index.min(),
+    max_value=daily_data.index.max(),
+    value=daily_data.index[-1],  # Default to most recent date
+    format="YYYY-MM-DD"
+)
+
+selected_forecast = daily_data.loc[selected_date, 'forecasted_price']
+selected_adjusted = daily_data.loc[selected_date, 'adjusted_price']
+
+col3, col4 = st.columns(2)
+with col3:
+    st.metric("Forecasted Price (US Cents/Lb)", round(selected_forecast, 2))
+with col4:
+    st.metric("Adjusted Price (US Cents/Lb)", round(selected_adjusted, 2))
+
+
+st.subheader("Forecasted vs Adjusted Prices Over Time")
+st.line_chart(daily_data[['forecasted_price', 'adjusted_price']].rename(
+    columns={"forecasted_price": "Forecasted Price", "adjusted_price": "Adjusted Price"}
+))
+
 
 # Data Display
 st.subheader("Detailed Data")
