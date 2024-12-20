@@ -17,14 +17,11 @@ from sklearn.linear_model import LinearRegression
 
 #download data
 
-from google.colab import drive
-drive.mount('/content/drive')
-
-sugar_data = pd.read_csv('/content/drive/MyDrive/Data/psd_sugar.csv')
-delhi_weather = pd.read_csv('/content/drive/MyDrive/Data/Delhi_NCR_1990_2022_Safdarjung.csv')
-lucknow_weather = pd.read_csv('/content/drive/MyDrive/Data/Lucknow_1990_2022.csv')
-mumbai_weather = pd.read_csv('/content/drive/MyDrive/Data/Mumbai_1990_2022_Santacruz.csv')
-sugar_price = pd.read_csv('/content/drive/MyDrive/Data/PSUGAISAUSDM.csv')
+sugar_data = pd.read_csv('psd_sugar.csv')
+delhi_weather = pd.read_csv('Delhi_NCR_1990_2022_Safdarjung.csv')
+lucknow_weather = pd.read_csv('Lucknow_1990_2022.csv')
+mumbai_weather = pd.read_csv('Mumbai_1990_2022_Santacruz.csv')
+sugar_price = pd.read_csv('PSUGAISAUSDM.csv')
 
 #clean data
 
