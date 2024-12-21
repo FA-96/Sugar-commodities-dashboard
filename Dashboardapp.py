@@ -146,10 +146,10 @@ today_adjusted = daily_data['adjusted_price'].iloc[-1]  # Last row as today's ad
 
 
 with col1:
-    st.metric("Today's Forecasted Price (US Cents/Lb)", round(today_forecast, 2))
+    st.metric("Today's Price (US Cents/Lb)", round(today_forecast, 2))
 
 with col2:
-    st.metric("Today's Adjusted Price (US Cents/Lb)", round(today_adjusted, 2))
+    st.metric("Today's recommended Price (US Cents/Lb)", round(today_adjusted, 2))
 
 # **Toggle Section for Time Selection**
 st.subheader("Explore Prices Over Time")
@@ -167,9 +167,9 @@ selected_adjusted = selected_data['adjusted_price']
 
 col3, col4 = st.columns(2)
 with col3:
-    st.metric("Forecasted Price (US Cents/Lb)", round(selected_forecast, 2))
+    st.metric("Today's Price (US Cents/Lb)", round(selected_forecast, 2))
 with col4:
-    st.metric("Adjusted Price (US Cents/Lb)", round(selected_adjusted, 2))
+    st.metric("Recommended Price (US Cents/Lb)", round(selected_adjusted, 2))
 
 
 st.subheader("Forecasted vs Adjusted Prices Over Time")
