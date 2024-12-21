@@ -118,6 +118,26 @@ print("Mean Absolute Error (MAE):", mae)
 daily_data['forecasted_price'] = pipeline.predict(x)
 daily_data['adjusted_price'] = (1.03 * daily_data['forecasted_price']) + (0.2 * daily_data['forecasted_price'])
 
+# Generate future dates and extrapolate features
+future_dates = pd.date_range(start=daily_data.index.max(), periods=30, freq='D')  # 30 days into the future
+
+# Extrapolate weather and production data (example: using last known values)
+future_weather = india_weather.iloc[-1].copy()
+future_weather = pd.DataFrame([future_weather] * len(future_dates), index=future_dates)
+
+future_production = daily_sugar_production.iloc[-1].copy()
+future_production = pd.DataFrame([future_production] * len(future_dates), index=future_dates)
+
+# Combine future features
+future_features = pd.merge(future_weather, future_production, left_index=True, right_index=True)
+
+# Predict future sugar prices
+future_features['forecasted_price'] = pipeline.predict(future_features)
+future_features['adjusted_price'] = (1.03 * future_features['forecasted_price']) + (0.2 * future_features['forecasted_price'])
+
+# Combine with historical data for display
+all_data = pd.concat([daily_data, future_features], sort=False)
+
 
 st.title("Sugar Commodity Dashboard")
 col1, col2 = st.columns(2)
