@@ -149,7 +149,7 @@ with col1:
     st.metric("Today's Price (US Cents/Lb)", round(today_forecast, 2))
 
 with col2:
-    st.metric("Today's recommended Price (US Cents/Lb)", round(today_adjusted, 2))
+    st.metric("Recommended Price (US Cents/Lb)", round(today_adjusted, 2))
 
 # **Toggle Section for Time Selection**
 st.subheader("Explore Prices Over Time")
@@ -172,7 +172,7 @@ with col4:
     st.metric("Recommended Price (US Cents/Lb)", round(selected_adjusted, 2))
 
 
-st.subheader("Forecasted vs Adjusted Prices Over Time")
+st.subheader("Today vs Recommended Prices Over Time")
 st.line_chart(daily_data[['forecasted_price', 'adjusted_price']].rename(
     columns={"forecasted_price": "Forecasted Price", "adjusted_price": "Adjusted Price"}
 ))
